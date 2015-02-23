@@ -1,0 +1,35 @@
+﻿<Window x:Class="nmct.datacomm.labo1.test1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+    </Window.Resources>
+    <Grid>
+        <Button x:Name="btnUp" Content="Omhoog" HorizontalAlignment="Left" Height="25" Margin="180,49,0,0" VerticalAlignment="Top" Width="80" Click="btnUp_Click"/>
+        <Button x:Name="btnLedsOff" Content="LEDs uit" HorizontalAlignment="Left" Height="25" Margin="95,49,0,0" VerticalAlignment="Top" Width="80" Click="btnLedsOff_Click"/>
+        <Button x:Name="btnLedsOn" Content="LEDs aan" HorizontalAlignment="Left" Height="25" Margin="10,49,0,0" VerticalAlignment="Top" Width="80" Click="btnLedsOn_Click"/>
+        <Button x:Name="btnCounter" Content="Teller" HorizontalAlignment="Left" Height="25" Margin="265,19,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button x:Name="btnVersion" Content="Versie" HorizontalAlignment="Left" Height="25" Margin="10,79,0,0" VerticalAlignment="Top" Width="80" Click="btnVersion_Click"/>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Height="25" Margin="95,19,0,0" VerticalAlignment="Top" Width="80" Click="btnClose_Click"/>
+        <Button x:Name="btnDown" Content="Omlaag" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="80" Margin="265,49,0,0" Click="btnDown_Click"/>
+        <Button x:Name="btnOpen" Content="Open" HorizontalAlignment="Left" Height="25" Margin="10,19,0,0" VerticalAlignment="Top" Width="80" Click="btnOpen_Click"/>
+        <TextBox x:Name="txbVersion" HorizontalAlignment="Left" Height="23" Margin="95,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+
+        <WrapPanel HorizontalAlignment="Left" Margin="27,207,0,0" VerticalAlignment="Top">
+            <CheckBox x:Name="chk1" Content="LED 1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <CheckBox x:Name="chk2" Content="LED 2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <CheckBox x:Name="chk3" Content="LED 3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <CheckBox x:Name="chk4" Content="LED 4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <CheckBox x:Name="chk5" Content="LED 5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <CheckBox x:Name="chk6" Content="LED 6" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <CheckBox x:Name="chk7" Content="LED 7" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <CheckBox x:Name="chk8" Content="LED 8" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </WrapPanel>
+        <Label x:Name="lblDigitalD" Content="Label" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Content="Read outputs" HorizontalAlignment="Left" Margin="95,107,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click" Height="28"/>
+        <Button x:Name="btnSetCheckboxes" Content="Set checkboxes" HorizontalAlignment="Left" Margin="220,107,0,0" VerticalAlignment="Top" Width="125" Height="28" Click="Button_Click_1"/>
+        <Label x:Name="lblDigitalB" Content="Label" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Width="80"/>
+
+    </Grid>
+</Window>
