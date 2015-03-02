@@ -1,0 +1,23 @@
+﻿<Window x:Class="nmct.datacomm.labo4.analoog.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <ProgressBar x:Name="kanaal1" HorizontalAlignment="Left" Height="26" Margin="69,34,0,0" VerticalAlignment="Top" Width="439"/>
+        <Label Content="Kanaal 1" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top"/>
+        <Label Content="Kanaal 2" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+        <Label Content="Kanaal 3" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top"/>
+        <Label Content="Kanaal 4" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
+        <ProgressBar x:Name="kanaal3" HorizontalAlignment="Left" Height="26" Margin="69,96,0,0" VerticalAlignment="Top" Width="439"/>
+        <ProgressBar x:Name="kanaal4" HorizontalAlignment="Left" Height="26" Margin="69,127,0,0" VerticalAlignment="Top" Width="439"/>
+        <ProgressBar x:Name="kanaal2" HorizontalAlignment="Left" Height="26" Margin="69,65,0,0" VerticalAlignment="Top" Width="439"/>
+        <Slider HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Analog in" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,3,0,0"/>
+        <Label Content="Analog out" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top"/>
+        <Label Content="Kanaal 0" HorizontalAlignment="Left" Margin="10,189,0,0" VerticalAlignment="Top"/>
+        <Label Content="Kanaal 1" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="sldKan1"  HorizontalAlignment="Left" Margin="69,220,0,0" VerticalAlignment="Top" Width="439" Height="26" ValueChanged="sldKan1_ValueChanged"/>
+        <Slider x:Name="sldKan0" HorizontalAlignment="Left" Height="26" Margin="69,189,0,0" VerticalAlignment="Top" Width="439" ValueChanged="sldKan0_ValueChanged"/>
+
+    </Grid>
+</Window>
