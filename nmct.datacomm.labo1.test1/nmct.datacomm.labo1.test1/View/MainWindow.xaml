@@ -8,7 +8,7 @@
         <Button x:Name="btnUp" Content="Omhoog" HorizontalAlignment="Left" Height="25" Margin="180,49,0,0" VerticalAlignment="Top" Width="80" Click="btnUp_Click"/>
         <Button x:Name="btnLedsOff" Content="LEDs uit" HorizontalAlignment="Left" Height="25" Margin="95,49,0,0" VerticalAlignment="Top" Width="80" Click="btnLedsOff_Click"/>
         <Button x:Name="btnLedsOn" Content="LEDs aan" HorizontalAlignment="Left" Height="25" Margin="10,49,0,0" VerticalAlignment="Top" Width="80" Click="btnLedsOn_Click"/>
-        <Button x:Name="btnCounter" Content="Teller" HorizontalAlignment="Left" Height="25" Margin="265,19,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button x:Name="btnCounter" Content="Teller" HorizontalAlignment="Left" Height="25" Margin="265,19,0,0" VerticalAlignment="Top" Width="80" Click="btnCounter_Click"/>
         <Button x:Name="btnVersion" Content="Versie" HorizontalAlignment="Left" Height="25" Margin="10,79,0,0" VerticalAlignment="Top" Width="80" Click="btnVersion_Click"/>
         <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Height="25" Margin="95,19,0,0" VerticalAlignment="Top" Width="80" Click="btnClose_Click"/>
         <Button x:Name="btnDown" Content="Omlaag" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="80" Margin="265,49,0,0" Click="btnDown_Click"/>
@@ -17,19 +17,23 @@
 
 
         <WrapPanel HorizontalAlignment="Left" Margin="27,207,0,0" VerticalAlignment="Top">
-            <CheckBox x:Name="chk1" Content="LED 1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <CheckBox x:Name="chk2" Content="LED 2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <CheckBox x:Name="chk3" Content="LED 3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <CheckBox x:Name="chk4" Content="LED 4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <CheckBox x:Name="chk5" Content="LED 5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <CheckBox x:Name="chk6" Content="LED 6" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <CheckBox x:Name="chk7" Content="LED 7" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <CheckBox x:Name="chk8" Content="LED 8" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <CheckBox x:Name="chk1" Content="LED 1" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="chk1_Checked" Unchecked="chk1_Unchecked"/>
+            <CheckBox x:Name="chk2" Content="LED 2" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="chk2_Checked" Unchecked="chk2_Unchecked"/>
+            <CheckBox x:Name="chk3" Content="LED 3" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="chk3_Checked" Unchecked="chk3_Unchecked"/>
+            <CheckBox x:Name="chk4" Content="LED 4" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="chk4_Checked" Unchecked="chk4_Unchecked"/>
+            <CheckBox x:Name="chk5" Content="LED 5" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="chk5_Checked" Unchecked="chk5_Unchecked"/>
+            <CheckBox x:Name="chk6" Content="LED 6" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="chk6_Checked" Unchecked="chk6_Unchecked"/>
+            <CheckBox x:Name="chk7" Content="LED 7" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="chk7_Checked" Unchecked="chk7_Unchecked"/>
+            <CheckBox x:Name="chk8" Content="LED 8" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="chk8_Checked" Unchecked="chk8_Unchecked"/>
         </WrapPanel>
-        <Label x:Name="lblDigitalD" Content="Label" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button Content="Read outputs" HorizontalAlignment="Left" Margin="95,107,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click" Height="28"/>
-        <Button x:Name="btnSetCheckboxes" Content="Set checkboxes" HorizontalAlignment="Left" Margin="220,107,0,0" VerticalAlignment="Top" Width="125" Height="28" Click="Button_Click_1"/>
-        <Label x:Name="lblDigitalB" Content="Label" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label x:Name="lblDigitalD" Content="Poort D" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Content="Read outputs" HorizontalAlignment="Left" Margin="95,107,0,0" VerticalAlignment="Top" Width="120" Click="Button_ReadOutputs_Click" Height="28"/>
+        <Button x:Name="btnSetCheckboxes" Content="Set checkboxes" HorizontalAlignment="Left" Margin="220,107,0,0" VerticalAlignment="Top" Width="125" Height="28" Click="Button_SetChecks_Click"/>
+        <Label x:Name="lblDigitalB" Content="Poort B" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Width="80"/>
+        <CheckBox x:Name="chkButton1" Content="Button 1" HorizontalAlignment="Left" Margin="27,246,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkButton2" Content="Button 2" HorizontalAlignment="Left" Margin="27,266,0,0" VerticalAlignment="Top"/>
+        <Slider HorizontalAlignment="Left" Margin="350,49,0,0" VerticalAlignment="Top" Width="158" Height="26" ValueChanged="Slider_ValueChanged"/>
+        <Label x:Name="lblDraai" Content="Draai" HorizontalAlignment="Left" Margin="156,248,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

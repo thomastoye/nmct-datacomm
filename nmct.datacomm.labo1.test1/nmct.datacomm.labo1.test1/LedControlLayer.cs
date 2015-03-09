@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using USB_DAQBoard;
+using TechUSBSimulator.Lib;
 using System.Windows.Controls;
 
 namespace nmct.datacomm.labo1.test1
@@ -71,6 +71,49 @@ namespace nmct.datacomm.labo1.test1
             checkboxes[5].IsChecked = led6;
             checkboxes[6].IsChecked = led7;
             checkboxes[7].IsChecked = led8;
+
+            Console.WriteLine("Writing out " + status);
+
+            MPUSB.WriteDigitalOutPortD(status);
+        }
+
+        public void TurnOnSpecificLed(int n)
+        {
+            SetLedStatus((byte)(GetLedStatus() | (int)(Math.Pow(2, n))));
+        }
+
+        public void TurnOffSpecificLed(int n)
+        {
+            byte mask = (byte)(0xFF ^ (byte)(Math.Pow(2, n)));
+            SetLedStatus((byte)(GetLedStatus() & mask));
+        }
+
+        public void ShiftOmhoog()
+        {
+            byte status = GetLedStatus();
+            byte geshift = (byte)(status >> 1);
+            byte toWrite = geshift;
+
+            if ((status & 0x01) != 0)
+            {
+                toWrite = (byte)(toWrite | 0x80);
+            }
+
+            SetLedStatus(toWrite);
+        }
+        
+        public void ShiftOmlaag()
+        {
+            byte status = GetLedStatus();
+            byte geshift = (byte)(status << 1);
+            byte toWrite = geshift;
+
+            if ((status & 0x80) != 0)
+            {
+                toWrite = (byte)(toWrite | 1);
+            }
+
+            SetLedStatus(toWrite);
         }
     }
 }
