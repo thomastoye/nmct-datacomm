@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using TechUSBLCDSimulator.Lib;
+
 namespace nmct.datacomm.labo2.lcd
 {
     /// <summary>
@@ -23,90 +25,114 @@ namespace nmct.datacomm.labo2.lcd
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void btnOpen_Click(object sender, RoutedEventArgs e)
-        {
             MPUSB.OpenMPUSBDevice();
-        }
-
-        private void btnWriteLcd_Click(object sender, RoutedEventArgs e)
-        {
-            SendInstructie(0x38); // function set => 0011 1000
-            //SendInstructie(0x0F); // display on => 0000 1111
-            SendInstructie(0x08); // 1111
-            SendInstructie(0x01);
-            SendInstructie(0x02);
-            //SendInstructie(0x02);
-            SendChar('A');
-            SendChar('B');
-            SendChar('5');
-
-        }
-
-        private void btnDisplayOff_Click(object sender, RoutedEventArgs e)
-        {
-            SendInstructie(0x8); // 1000
-        }
-
-        private void SendInstructie(byte i)
-        {
-            EHoogInstructie();
-            WriteDataLijnen(i); // moet dit niet naar links geshift worden?
-            ELaagInstructie();
-            System.Threading.Thread.Sleep(20);
-        }
-
-        private void SendChar(char c)
-        {
-            System.Console.WriteLine(Convert.ToByte(c));
-            EHoogData();
-            WriteDataLijnen(Convert.ToByte(c));
-            ELaagData();
-            System.Threading.Thread.Sleep(20);
-        }
-
-        private void WriteDataLijnen(byte data)
-        {
-            int x = MPUSB.ReadDigitalOutPortD();
-            int y = x & 0xF0;
-            int z = y | data;
-            MPUSB.WriteDigitalOutPortD((Int16)z);
-        }
-
-        private void WriteStuurLijnen(Int16 a)
-        {
-            // RS RW E
-            int x = MPUSB.ReadDigitalOutPortD();
-            int y = x & 0xF8FF;
-            int z = y | a;
-            Console.WriteLine("Schrijven (stuurlijnen): " + z);
-            MPUSB.WriteDigitalOutPortD((Int16)z);
-        }
-
-        private void EHoogInstructie()
-        {
-            Console.WriteLine("Schrijven (stuurlijnen): EHoogInstr");
-            WriteStuurLijnen(0x0100);
-        }
-
-        private void ELaagInstructie()
-        {
-            Console.WriteLine("Schrijven (stuurlijnen): ELaagInstr");
-            WriteStuurLijnen(0x0000);
         }
 
         private void EHoogData()
         {
-            Console.WriteLine("Schrijven (stuurlijnen): EHoogData");
-            WriteStuurLijnen(0x0500);
+            int value = MPUSB.ReadDigitalOutPortD();
+            value = value & 0x0FF;
+            value = value | 0x500;
+            MPUSB.WriteDigitalOutPortD((short)value);
+            MPUSB.Wait(25);
         }
 
         private void ELaagData()
         {
-            Console.WriteLine("Schrijven (stuurlijnen): ELaagData");
-            WriteStuurLijnen(0x0400);
+            int value = MPUSB.ReadDigitalOutPortD();
+            value = value & 0x0FF;
+            value = value | 0x400;
+            MPUSB.WriteDigitalOutPortD((short)value);
+            MPUSB.Wait(25);
         }
 
+        private void EHoogInstructie()
+        {
+            int value = MPUSB.ReadDigitalOutPortD();
+            value = value & 0x0FF;
+            value = value | 0x100;
+            MPUSB.WriteDigitalOutPortD((short)value);
+            MPUSB.Wait(25);
+        }
+
+        private void ELaagInstructie()
+        {
+            int value = MPUSB.ReadDigitalOutPortD();
+            value = value & 0x0FF;
+            MPUSB.WriteDigitalOutPortD((short)value);
+            MPUSB.Wait(25);
+        }
+
+        private void btnInit_Click(object sender, RoutedEventArgs e)
+        {
+            InitialisatieLCD();
+            ClearLCD();
+        }
+
+        private void InitialisatieLCD()
+        {
+            DisplayOn();
+            FunctionSet();
+        }
+
+        private void DisplayOn()
+        {
+            //0000001111 -> 0x00F
+            EHoogInstructie();
+            DataVeranderen(0x00F);
+            ELaagInstructie();
+        }
+
+        private void FunctionSet()
+        {
+            //0000111000 -> 0x038
+            EHoogInstructie();
+            DataVeranderen(0x038);
+            ELaagInstructie();
+        }
+
+        private void btnSend_Click(object sender, RoutedEventArgs e)
+        {
+            ClearLCD();
+            char[] textAscii = txtData.Text.ToCharArray();
+
+            for (int i = 0; i < textAscii.Length; i++)
+            {
+                if (i == 16)
+                {
+                    EHoogInstructie();
+                    DataVeranderen(0x0C0);
+                    ELaagInstructie();
+                }
+                EHoogData();
+                DataVeranderen(textAscii[i]);
+                ELaagData();
+            }
+        }
+
+        // helpers
+
+        private byte[] StringToASCII(string text)
+        {
+            // Convert the string into a byte[].
+            byte[] asciiBytes = Encoding.ASCII.GetBytes(text);
+            return asciiBytes;
+        }
+
+        private void DataVeranderen(int data)
+        {
+            int value = MPUSB.ReadDigitalOutPortD();
+            value = value & 0xF00;
+            value = value | data;
+            MPUSB.WriteDigitalOutPortD((short)value);
+            MPUSB.Wait(25);
+        }
+        private void ClearLCD()
+        {
+            //0000000001 -> 0x001
+            EHoogInstructie();
+            DataVeranderen(0x001);
+            ELaagInstructie();
+        }
     }
 }
